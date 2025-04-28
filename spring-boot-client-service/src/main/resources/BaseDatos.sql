@@ -1,0 +1,20 @@
+DROP TABLE IF EXISTS cliente CASCADE;
+DROP TABLE IF EXISTS persona CASCADE;
+CREATE TABLE IF NOT EXISTS persona (
+    id BIGSERIAL PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    genero VARCHAR(50),
+    edad INT,
+    identificacion VARCHAR(50) UNIQUE NOT NULL,
+    direccion VARCHAR(255),
+    telefono VARCHAR(50),
+    tipo_persona VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS cliente (
+    clienteId BIGSERIAL PRIMARY KEY,
+    contrasena VARCHAR(255) NOT NULL,
+    estado BOOLEAN DEFAULT TRUE,
+    id BIGINT NOT NULL,
+    FOREIGN KEY (id) REFERENCES persona(id) ON DELETE CASCADE
+);
